@@ -1,0 +1,29 @@
+{
+  "name": "Lo Nuestro · La cuenta de cobro de los contribuyentes",
+  "short_name": "Lo Nuestro",
+  "description": "Reclama con la ley en la mano que devuelvan la plata pública.",
+  "lang": "es-CO",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#E6EEE8",
+  "theme_color": "#16243F",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
