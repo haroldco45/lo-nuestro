@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lo Nuestro · La cuenta de cobro de los contribuyentes</title>
+<meta name="description" content="Casos de corrupción 2022–2026 en Colombia y una herramienta para que cualquier ciudadano exija, por escrito y con la ley en la mano, que devuelvan la plata pública.">
+<meta name="theme-color" content="#16243F">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Lo Nuestro · La cuenta de cobro de los contribuyentes">
+<meta property="og:description" content="Casos de corrupción 2022–2026 y un reclamo legal listo en 3 minutos para exigir que devuelvan la plata pública.">
+<meta property="og:image" content="https://haroldco45.github.io/lo-nuestro/og.png">
+<meta property="og:url" content="https://haroldco45.github.io/lo-nuestro/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,600;62..125,800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E6EEE8; --paper:#FBFDFB; --ink:#16243F; --muted:#56657A; --line:#C4D3C9;
+  --stamp:#B3202A; --gold:#E8B416; --ok:#1F7A4D; --field:#FFFFFF;
+  --sans:"Archivo","Arial Narrow",Arial,sans-serif;
+  --mono:"Courier Prime","Courier New",Courier,monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1626; --paper:#172238; --ink:#E7EDF5; --muted:#9AA8BC; --line:#2A3A55;
+    --stamp:#FF5A5F; --gold:#F2C230; --ok:#4CC38A; --field:#1D2A43; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1626; --paper:#172238; --ink:#E7EDF5; --muted:#9AA8BC; --line:#2A3A55;
+  --stamp:#FF5A5F; --gold:#F2C230; --ok:#4CC38A; --field:#1D2A43; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:620px;margin:0 auto;padding:20px 18px 120px}
+
+/* ---------- cabecera ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.brand{font-weight:800;font-stretch:72%;font-size:22px;letter-spacing:.01em;line-height:1}
+.brand small{display:block;font-weight:400;font-stretch:100%;font-size:13px;color:var(--muted);letter-spacing:0;margin-top:4px}
+.flag{display:flex;height:6px;width:54px;border-radius:3px;overflow:hidden}
+.flag i{flex:2;background:#F2C230}.flag i+i{flex:1;background:#1F4FA8}.flag i+i+i{background:#C8202F}
+
+/* ---------- recibo (lo memorable) ---------- */
+.receipt{position:relative;background:var(--paper);padding:26px 22px 30px;font-family:var(--mono);
+  --tooth:9px;
+  -webkit-mask:radial-gradient(circle at 50% 0,#0000 5px,#000 5.5px) 50% 0/14px 51% repeat-x,radial-gradient(circle at 50% 100%,#0000 5px,#000 5.5px) 50% 100%/14px 51% repeat-x;
+          mask:radial-gradient(circle at 50% 0,#0000 5px,#000 5.5px) 50% 0/14px 51% repeat-x,radial-gradient(circle at 50% 100%,#0000 5px,#000 5.5px) 50% 100%/14px 51% repeat-x;
+  filter:drop-shadow(0 2px 0 var(--line));
+}
+.receipt h1{font-family:var(--sans);font-stretch:62%;font-weight:800;font-size:clamp(44px,13vw,68px);line-height:.9;margin:4px 0 14px;letter-spacing:-.01em}
+.r-meta{font-size:14px;color:var(--muted);display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin-bottom:16px}
+.r-meta b{color:var(--ink);font-weight:700}
+.r-lines{border-top:2px dashed var(--line);border-bottom:2px dashed var(--line);padding:10px 0;margin:0}
+.r-line{display:flex;align-items:baseline;gap:6px;font-size:14.5px;padding:5px 0}
+.r-line span:first-child{flex:0 1 auto}
+.r-line .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:18px}
+.r-line span:last-child{white-space:nowrap;font-weight:700}
+.r-total{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:12px;font-size:15px}
+.r-total strong{font-family:var(--sans);font-stretch:72%;font-weight:800;font-size:34px;line-height:1}
+.r-note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.stamp{position:absolute;right:14px;top:92px;transform:rotate(-12deg);border:3px solid var(--stamp);color:var(--stamp);
+  font-family:var(--sans);font-weight:800;font-stretch:80%;font-size:17px;line-height:1.05;padding:6px 10px;border-radius:6px;text-align:center;opacity:.9;pointer-events:none;
+  animation:stampIn .5s .5s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes stampIn{from{transform:rotate(-12deg) scale(2.2);opacity:0}to{transform:rotate(-12deg) scale(1);opacity:.9}}
+@media (prefers-reduced-motion:reduce){.stamp{animation:none}}
+.sign{margin-top:22px;display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.sign .line{flex:1;min-width:140px;border-bottom:2px solid var(--ink);font-size:13px;color:var(--muted);padding-bottom:2px}
+
+/* ---------- botones y bloques ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;padding:13px 18px;font-weight:700;cursor:pointer;text-decoration:none;min-height:48px}
+.btn-main{background:var(--stamp);color:#fff}
+.btn-alt{background:transparent;border:2px solid var(--ink)}
+.btn-wa{background:#1F7A4D;color:#fff}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+section{margin-top:34px}
+h2{font-stretch:75%;font-weight:800;font-size:30px;line-height:1.05;margin:0 0 8px}
+h3{font-size:19px;margin:0 0 4px;line-height:1.25}
+p{margin:0 0 12px}
+.lead{color:var(--muted);max-width:60ch}
+.panel{background:var(--paper);border-radius:14px;padding:18px;border:1px solid var(--line)}
+
+/* ---------- casos ---------- */
+.filters{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;margin:0 -2px}
+.chip{flex:none;border:2px solid var(--line);background:transparent;border-radius:999px;padding:7px 14px;font-weight:600;cursor:pointer;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.case{background:var(--paper);border-left:6px solid var(--muted);padding:16px 16px 14px;margin-top:12px;border-radius:0 12px 12px 0}
+.case[data-estado="condena"]{border-left-color:var(--ok)}
+.case[data-estado="juicio"]{border-left-color:var(--stamp)}
+.case[data-estado="investigacion"]{border-left-color:var(--gold)}
+.case .who{font-size:14px;color:var(--muted);margin-bottom:6px}
+.case .amount{font-family:var(--mono);font-weight:700;font-size:15px;margin:8px 0}
+.badge{display:inline-block;font-size:13px;font-weight:700;padding:2px 9px;border-radius:5px;background:var(--bg);margin-right:6px}
+.case details{margin-top:8px}
+.case summary{cursor:pointer;font-weight:600;padding:6px 0}
+.case ul{padding-left:20px;margin:6px 0 10px}
+.case li{margin-bottom:6px}
+.case .src{font-size:13.5px;color:var(--muted)}
+.case .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.case .actions .btn{min-height:42px;padding:9px 14px;font-size:15px}
+.note{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:18px}
+
+/* ---------- formulario ---------- */
+.step{margin-top:22px}
+.step h3{display:flex;gap:10px;align-items:baseline}
+.step h3 .n{font-family:var(--mono);font-size:15px;color:var(--stamp)}
+label{display:block;font-weight:600;font-size:15px;margin:12px 0 5px}
+input,select,textarea{width:100%;background:var(--field);border:2px solid var(--line);border-radius:10px;padding:11px 12px;font-size:16px}
+textarea{min-height:92px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+@media (max-width:460px){.grid2{grid-template-columns:1fr}}
+.targets{display:grid;gap:10px;margin-top:8px}
+.target{display:flex;gap:12px;align-items:flex-start;border:2px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;background:var(--paper)}
+.target input{width:auto;margin-top:4px;accent-color:var(--stamp)}
+.target b{display:block}
+.target span{font-size:14.5px;color:var(--muted)}
+.target:has(input:checked){border-color:var(--stamp)}
+.letter{white-space:pre-wrap;font-family:var(--mono);font-size:14px;line-height:1.55;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;max-height:420px;overflow:auto;margin-top:14px}
+.hint{font-size:14px;color:var(--muted);margin-top:8px}
+.err{color:var(--stamp);font-weight:600;font-size:15px;margin-top:10px}
+
+/* ---------- mis reclamos ---------- */
+.claim{background:var(--paper);border-radius:12px;padding:14px;margin-top:12px;border:1px solid var(--line)}
+.claim .meta{font-size:14px;color:var(--muted)}
+.claim .due{font-family:var(--mono);font-weight:700;margin-top:6px}
+.claim .due.late{color:var(--stamp)}
+.claim .row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.claim .row input{flex:1;min-width:150px;padding:8px 10px}
+.claim .row select{width:auto;padding:8px 10px}
+.small-btn{border:2px solid var(--line);background:transparent;border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:600;font-size:14px}
+.empty{padding:22px;text-align:center;color:var(--muted);border:2px dashed var(--line);border-radius:12px;margin-top:12px}
+
+/* ---------- barra inferior ---------- */
+.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);display:flex;justify-content:center;
+  padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:10}
+.tabs-in{display:flex;width:100%;max-width:620px}
+.tab{flex:1;background:none;border:0;padding:8px 2px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;border-radius:10px}
+.tab svg{width:22px;height:22px}
+.tab[aria-selected="true"]{color:var(--stamp)}
+.view{display:none}.view.on{display:block}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;opacity:0;transition:opacity .2s;pointer-events:none;z-index:20;max-width:90vw;text-align:center}
+.toast.show{opacity:1}
+footer{margin-top:40px;font-size:13.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">LO NUESTRO<small>La plata pública es de todos. Reclamarla también.</small></div>
+    <div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
+  </header>
+
+  <!-- ================= COBRO ================= -->
+  <main>
+  <div class="view on" id="v-cobro" role="tabpanel">
+    <article class="receipt" aria-label="Cuenta de cobro de los contribuyentes">
+      <div class="stamp" aria-hidden="true">COBRO<br>PENDIENTE</div>
+      <h1>Cuenta de cobro</h1>
+      <div class="r-meta">
+        <span>N.º</span><b>2022 – 2026</b>
+        <span>De</span><b>Los contribuyentes de Colombia</b>
+        <span>Para</span><b>Quienes se apropiaron de lo público</b>
+        <span>Fecha</span><b id="today">—</b>
+      </div>
+      <div class="r-lines" id="r-lines"></div>
+      <div class="r-total"><span>Hallazgos fiscales en todo el país, 2022–2026</span><strong>$25,9 billones</strong></div>
+      <p class="r-note">Más de 6.100 hallazgos de la Contraloría General. Cada renglón es plata de nuestros impuestos que alguien debe explicar o devolver.</p>
+      <div class="sign">
+        <div class="line" id="sign-line">Firma del contribuyente</div>
+        <button class="btn btn-main" data-go="reclamar">Firmar y reclamar</button>
+      </div>
+    </article>
+
+    <section>
+      <h2>Qué hace esta app</h2>
+      <p class="lead">Convierte tu indignación en un documento legal. En tres minutos armas un derecho de petición dirigido a quien corresponde, lo envías y llevas la cuenta de los días que tienen para responderte. Si miles lo hacemos por el mismo caso, ya no pueden archivarlo en silencio.</p>
+      <div class="btn-row">
+        <button class="btn btn-main" data-go="reclamar">Hacer mi reclamo</button>
+        <button class="btn btn-alt" data-go="casos">Ver los casos</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Pásala</h2>
+      <p class="lead">Un reclamo solo es un papel. Diez mil reclamos por el mismo caso son una presión que ninguna entidad puede ignorar. Mándala a tu familia, a tu barrio y a tu grupo de trabajo.</p>
+      <button class="btn btn-wa" id="share-wa">Compartir por WhatsApp</button>
+    </section>
+
+    <section>
+      <h2>Armen una veeduría</h2>
+      <div class="panel">
+        <p>La Ley 850 de 2003 permite que cualquier grupo de ciudadanos vigile un contrato u obra pública. Una veeduría registrada tiene más fuerza que una persona sola: puede pedir documentos, visitar la obra y pedir a la Contraloría General que intervenga cuando la contraloría local no avanza.</p>
+        <p style="margin:0">Cómo empezar: reúnanse, escojan la obra o contrato, levanten un acta de constitución y regístrenla en la Personería de su municipio o en la Cámara de Comercio. La Personería los asesora gratis.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= CASOS ================= -->
+  <div class="view" id="v-casos" role="tabpanel">
+    <h2>Los casos</h2>
+    <p class="lead">Lo que ha salido a la luz en los últimos cuatro años, de distintos gobiernos y regiones, con el estado en que va cada uno. Toca un caso para reclamar por él.</p>
+    <div class="filters" role="group" aria-label="Filtrar por estado">
+      <button class="chip" aria-pressed="true" data-f="todos">Todos</button>
+      <button class="chip" aria-pressed="false" data-f="condena">Con condenas</button>
+      <button class="chip" aria-pressed="false" data-f="juicio">En juicio</button>
+      <button class="chip" aria-pressed="false" data-f="investigacion">En investigación</button>
+      <button class="chip" aria-pressed="false" data-f="fiscal">Hallazgo fiscal</button>
+    </div>
+    <div id="case-list"></div>
+    <p class="note">Solo quienes tienen sentencia están condenados. Las demás personas mencionadas son investigadas o acusadas y se presumen inocentes hasta que un juez decida. La información sale de reportes de prensa y de la Contraloría hasta septiembre de 2026; cada caso trae su fuente.</p>
+  </div>
+
+  <!-- ================= RECLAMAR ================= -->
+  <div class="view" id="v-reclamar" role="tabpanel">
+    <h2>Hacer mi reclamo</h2>
+    <p class="lead">Es un derecho de petición (artículo 23 de la Constitución y Ley 1755 de 2015). La entidad está obligada a responderte por escrito. No necesitas abogado.</p>
+
+    <div class="step">
+      <h3><span class="n">1</span>¿Por qué caso reclamas?</h3>
+      <select id="f-case" aria-label="Caso"></select>
+      <div id="custom-case" hidden>
+        <label for="f-obra">Obra, contrato o programa</label>
+        <input id="f-obra" placeholder="Ej.: Pavimentación de la vía a la vereda…">
+        <div class="grid2">
+          <div><label for="f-entidad">Entidad responsable</label><input id="f-entidad" placeholder="Ej.: Alcaldía de Caucasia"></div>
+          <div><label for="f-contrato">N.º de contrato (si lo sabes)</label><input id="f-contrato" placeholder="Opcional"></div>
+        </div>
+        <label for="f-hechos">¿Qué está pasando?</label>
+        <textarea id="f-hechos" placeholder="Describe lo que ves: obra abandonada, pagada y no terminada, materiales de mala calidad… Solo hechos, sin nombres de personas."></textarea>
+      </div>
+    </div>
+
+    <div class="step">
+      <h3><span class="n">2</span>¿Qué quieres lograr?</h3>
+      <div class="targets" id="targets"></div>
+    </div>
+
+    <div class="step">
+      <h3><span class="n">3</span>Tus datos</h3>
+      <p class="hint" style="margin-top:0">La entidad necesita saber a quién responder. Tus datos se quedan en tu teléfono; esta app no los envía a ningún lado.</p>
+      <label for="f-nombre">Nombre completo</label>
+      <input id="f-nombre" autocomplete="name">
+      <div class="grid2">
+        <div><label for="f-cedula">Cédula</label><input id="f-cedula" inputmode="numeric"></div>
+        <div><label for="f-muni">Municipio</label><input id="f-muni" autocomplete="address-level2"></div>
+      </div>
+      <div class="grid2">
+        <div><label for="f-correo">Correo para la respuesta</label><input id="f-correo" type="email" autocomplete="email"></div>
+        <div><label for="f-tel">Celular (opcional)</label><input id="f-tel" inputmode="tel" autocomplete="tel"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-main" id="make">Escribir mi reclamo</button></div>
+      <div class="err" id="err" role="alert"></div>
+    </div>
+
+    <div class="step" id="out" hidden>
+      <h3><span class="n">4</span>Envíalo</h3>
+      <div class="letter" id="letter" tabindex="0"></div>
+      <div class="btn-row">
+        <button class="btn btn-alt" id="copy">Copiar texto</button>
+        <a class="btn btn-main" id="send" target="_blank" rel="noopener">Enviar</a>
+        <button class="btn btn-alt" id="save">Guardar en mis reclamos</button>
+      </div>
+      <p class="hint" id="send-hint"></p>
+    </div>
+  </div>
+
+  <!-- ================= MIS RECLAMOS ================= -->
+  <div class="view" id="v-mios" role="tabpanel">
+    <h2>Mis reclamos</h2>
+    <p class="lead">Aquí llevas la cuenta. La ley da 15 días hábiles para responder un derecho de petición (10 si pediste documentos). Cuando te den un número de radicado, anótalo.</p>
+    <div id="claims"></div>
+    <div class="panel" style="margin-top:22px">
+      <h3>¿No te respondieron a tiempo?</h3>
+      <p style="margin:0">Puedes poner una acción de tutela por violación del derecho de petición. Se presenta ante cualquier juez de tu municipio, sin abogado, y el juez tiene 10 días para decidir. Lleva copia de tu reclamo y la prueba de que lo enviaste.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Esta app no reemplaza la asesoría de un abogado. La Personería municipal orienta gratis a cualquier ciudadano. Hecha por Vibras Positivas HM, Caucasia, Antioquia.</p>
+  </footer>
+  </main>
+</div>
+
+<nav class="tabs" role="tablist" aria-label="Secciones">
+  <div class="tabs-in">
+    <button class="tab" role="tab" aria-selected="true" data-tab="cobro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h3"/></svg>Cobro</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="casos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Casos</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="reclamar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m14 6 4 4"/></svg>Reclamar</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="mios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/></svg>Mis reclamos</button>
+  </div>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============ DATOS ============ */
+const CASOS = [
+  { id:"ungrd-carrotanques", titulo:"Carrotanques para La Guajira (UNGRD)", entidad:"Unidad Nacional para la Gestión del Riesgo de Desastres", periodo:"2023 · Gobierno Petro",
+    estado:"condena", estadoTxt:"Con condenas",
+    monto:"La Contraloría imputó responsabilidad fiscal por más de $22.000 millones",
+    resumen:"En 2023 se compraron 80 carrotanques por emergencia para llevar agua a La Guajira. Según Fiscalía y Contraloría, se pagaron con sobreprecio, con documentos falsos y muchos no servían para lo que se compraron.",
+    novedades:[
+      "Marzo 2026: condenado a 16 años y 7 meses el exgerente de ventas de la corporación Yapurutú, que vendió 40 de los carrotanques.",
+      "Febrero 2026: la Supersociedades inhabilitó 10 años a Impoamericana Roger S.A.S., la otra proveedora, y le impuso una multa de casi $1.299 millones.",
+      "Agosto 2026: otros dos procesados firmaron preacuerdo con la Fiscalía. Una jueza decide el 4 de noviembre de 2026 si lo acepta."
+    ],
+    fuentes:[["Semana, mar. 2026","https://www.semana.com/nacion/articulo/corrupcion-en-la-ungrd-condenado-a-16-anos-y-medio-de-prision-exgerente-de-empresa-que-vendio-los-50-carrotanques/202640/"],["Infobae, feb. 2026","https://www.infobae.com/colombia/2026/02/25/supersociedades-inhabilito-por-10-anos-a-empresa-proveedora-de-carrotanques-por-escandalo-de-corrupcion-en-la-ungrd-le-impuso-millonaria-multa/"]],
+    pedir:"el estado de los procesos de responsabilidad fiscal y penales por la compra de carrotanques de la UNGRD para La Guajira (2023), el monto del detrimento establecido, los bienes embargados a los responsables y la suma efectivamente devuelta al Estado a la fecha" },
+
+  { id:"ungrd-congreso", titulo:"Plata de la UNGRD para comprar votos en el Congreso", entidad:"UNGRD, Ministerio de Hacienda y Congreso", periodo:"2023 · Gobierno Petro",
+    estado:"juicio", estadoTxt:"En juicio",
+    monto:"Según la Fiscalía, sobornos pagados con los sobrecostos de los contratos de la UNGRD",
+    resumen:"Según los testimonios de exdirectivos de la UNGRD, parte de la plata de los sobrecostos se habría entregado a congresistas para que aprobaran créditos y proyectos del Gobierno. La Corte Suprema lleva el caso de los congresistas.",
+    novedades:[
+      "El exsubdirector Sneyder Pinilla fue condenado a 5 años por preacuerdo. El exdirector Olmedo López aceptó cargos y espera sentencia. En agosto de 2026 la Contraloría emitió fallo de responsabilidad fiscal contra ambos.",
+      "Los expresidentes del Senado y la Cámara, Iván Name (Alianza Verde) y Andrés Calle (Liberal), están detenidos desde mayo de 2025 y van a juicio.",
+      "Marzo 2026: la Corte Suprema llamó a juicio a cinco congresistas y un excongresista más.",
+      "Diciembre 2025: los exministros Ricardo Bonilla (Hacienda) y Luis Fernando Velasco (Interior) quedaron con detención preventiva."
+    ],
+    fuentes:[["El País Cali, ago. 2026","https://www.elpais.com.co/judicial/contraloria-dicta-fallo-de-responsabilidad-fiscal-contra-olmedo-lopez-y-sneyder-pinilla-vinculados-en-caso-de-corrupcion-2618.html"],["Infobae, feb. 2026","https://www.infobae.com/colombia/2026/02/27/corrupcion-en-la-ungrd-corte-suprema-fijo-fecha-para-audiencia-preparatoria-de-juicio-contra-ivan-name-y-andres-calle/"],["El Heraldo, dic. 2025","https://www.elheraldo.co/colombia/2025/12/28/un-gobierno-bajo-sospecha-los-escandalos-que-marcaron-a-petro-en-2025/"]],
+    pedir:"el estado de los procesos penales, disciplinarios y fiscales derivados de la entrega de recursos de la UNGRD a congresistas y funcionarios, y las medidas adoptadas para recuperar esos recursos (embargos, comiso o extinción de dominio)" },
+
+  { id:"mi17", titulo:"Contrato de helicópteros Mi-17", entidad:"Ministerio de Defensa", periodo:"2025",
+    estado:"investigacion", estadoTxt:"En investigación",
+    monto:"El Ministerio sancionó a la contratista con $33.700 millones por incumplimiento",
+    resumen:"Un contrato para mantener helicópteros militares Mi-17 habría sido direccionado a una firma sin la experiencia ni la capacidad técnica que se exigía.",
+    novedades:["Diciembre 2025: capturados un coronel, un exsecretario general y un asesor del sector, acusados de favorecer a la firma Vertol Systems."],
+    fuentes:[["Infobae, dic. 2025","https://www.infobae.com/colombia/2025/12/29/corrupcion-homicidios-y-extradiciones-estos-son-los-casos-de-alto-impacto-que-la-fiscalia-debera-tramitar-durante-el-2026/"]],
+    pedir:"el estado de las investigaciones por el contrato de mantenimiento de helicópteros Mi-17 y el recaudo efectivo de la sanción de $33.700 millones impuesta a la contratista" },
+
+  { id:"pae", titulo:"PAE: la comida de los niños en los colegios", entidad:"Entidades territoriales y operadores del PAE", periodo:"Auditoría publicada en feb. 2026",
+    estado:"fiscal", estadoTxt:"Hallazgo fiscal",
+    monto:"Hallazgos fiscales por más de $53.117 millones en todo el país",
+    resumen:"La Contraloría encontró fallas en la contratación y en el cumplimiento de las minutas del Programa de Alimentación Escolar, además de programas que arrancaron tarde y dejaron a estudiantes sin comida.",
+    novedades:["En Antioquia, otra auditoría encontró retrasos del PAE y un megacolegio sin terminar con hallazgo de $8.879 millones (julio 2025)."],
+    fuentes:[["El Heraldo, feb. 2026","https://www.elheraldo.co/colombia/2026/02/09/contraloria-detecta-hallazgos-fiscales-por-mas-de-53117-millones-en-ejecucion-del-pae/"],["Infobae, jul. 2025","https://www.infobae.com/colombia/2025/07/30/la-contraloria-detecto-irregularidades-en-la-construccion-de-un-megacolegio-y-la-ejecucion-del-pae-en-antioquia/"]],
+    pedir:"los hallazgos fiscales sobre el Programa de Alimentación Escolar que involucran a mi municipio o departamento, el estado de los procesos de responsabilidad fiscal abiertos y los valores recuperados" },
+
+  { id:"agua-antioquia", titulo:"Planes de agua en Antioquia (incluye Nechí, Bajo Cauca)", entidad:"Planes Departamentales de Agua", periodo:"Auditoría de 2025",
+    estado:"fiscal", estadoTxt:"Hallazgo fiscal",
+    monto:"Hallazgos fiscales por más de $8.700 millones en Antioquia",
+    resumen:"Obras de acueducto y alcantarillado que se pagaron sin asegurar que se cumplieran, con fallas técnicas y de interventoría. Nechí, en el Bajo Cauca, está entre los municipios auditados.",
+    novedades:["A nivel nacional la misma auditoría dejó 14 hallazgos fiscales por más de $14.298 millones en seis departamentos, entre ellos Sucre y Bolívar."],
+    fuentes:[["Mi Oriente, 2025","https://mioriente.com/antioquia/contraloria-hallazgos-planes-de-agua.html"]],
+    pedir:"el estado de los procesos de responsabilidad fiscal derivados de la auditoría a los Planes Departamentales de Agua en Antioquia, en especial los relacionados con municipios del Bajo Cauca, y los valores recuperados" },
+
+  { id:"regalias", titulo:"Obras con regalías que quedaron a medias", entidad:"Sistema General de Regalías", periodo:"2023 – 2025",
+    estado:"fiscal", estadoTxt:"Hallazgo fiscal",
+    monto:"Hallazgos fiscales por más de $2,1 billones en el país",
+    resumen:"Proyectos de agua potable, energía solar y producción rural financiados con regalías que no se terminaron o no funcionan. Antioquia está entre los departamentos con más problemas.",
+    novedades:["La Contraloría contó en Antioquia 154 proyectos inconclusos con cerca de $1,3 billones comprometidos (junio 2024)."],
+    fuentes:[["El Colombiano","https://www.elcolombiano.com/antioquia/antioquia-es-uno-de-los-departamentos-con-mas-hallazgos-fiscales-regalias-IK27698563"]],
+    pedir:"el listado de proyectos financiados con regalías en mi municipio que tienen hallazgos fiscales o están inconclusos, el estado de los procesos de responsabilidad fiscal y los valores recuperados" },
+
+  { id:"sae", titulo:"Sociedad de Activos Especiales (SAE)", entidad:"SAE", periodo:"2023 – 2025",
+    estado:"fiscal", estadoTxt:"Hallazgo fiscal",
+    monto:"Hallazgos fiscales por $8.839 millones",
+    resumen:"La entidad que administra los bienes quitados a la mafia tuvo hallazgos de la Contraloría en tres vigencias seguidas.",
+    novedades:["Febrero 2026: la Contraloría reportó los hallazgos por las vigencias 2023, 2024 y primer semestre de 2025."],
+    fuentes:[["El Colombiano, sep. 2026","https://www.elcolombiano.com/colombia/gobierno-gustavo-petro-mas-de-100-investigaciones-por-corrupcion-salpican-sae-ant-ministerio-de-la-igualdad-EE41233117"]],
+    pedir:"el estado de los procesos de responsabilidad fiscal abiertos por los hallazgos a la Sociedad de Activos Especiales (vigencias 2023 a 2025) y los valores recuperados" },
+
+  { id:"centros-poblados", titulo:"Centros Poblados (internet rural)", entidad:"MinTIC · Fondo Único de TIC", periodo:"2021 · Gobierno Duque",
+    estado:"fiscal", estadoTxt:"Hallazgo fiscal",
+    monto:"Proceso de la Contraloría por más de $87.000 millones",
+    resumen:"El anticipo para llevar internet a escuelas rurales terminó en manos de un contratista que presentó garantías falsas. Es anterior a 2022, pero la plata todavía se está cobrando.",
+    novedades:["La Contraloría lo incluye entre sus casos destacados del balance 2022–2026."],
+    fuentes:[["La Opinión","https://laopinion.co/economia/contraloria-reporta-6141-hallazgos-fiscales-por-259-billones-entre-2022-y-2026-en-colombia"]],
+    pedir:"el estado del proceso de responsabilidad fiscal por el contrato de Centros Poblados del Fondo Único de TIC, los bienes embargados y la suma efectivamente recuperada a la fecha" }
+];
+
+const RECIBO = [
+  ["Carrotanques UNGRD","$22.000 M"],
+  ["PAE, todo el país","$53.117 M"],
+  ["Planes de agua, Antioquia","$8.700 M"],
+  ["Obras con regalías","$2,1 billones"],
+  ["Centros Poblados","$87.000 M"],
+  ["SAE","$8.839 M"]
+];
+
+const DESTINOS = {
+  contraloria:{ nombre:"Contraloría General de la República", corto:"Contraloría", meta:"Que devuelvan la plata", desc:"Procesos de responsabilidad fiscal: el responsable paga con su patrimonio.",
+    correo:"cgr@contraloria.gov.co", url:"https://denuncie.contraloria.gov.co/sipar/",
+    hint:"Se abre tu correo con el reclamo listo para cgr@contraloria.gov.co. También puedes radicarlo en SIPAR o llamar gratis al 01 8000 910060. Para obras municipales o departamentales, envía copia a la contraloría de tu departamento." },
+  fiscalia:{ nombre:"Fiscalía General de la Nación", corto:"Fiscalía", meta:"Que respondan ante la justicia", desc:"Investigación penal, cárcel y extinción de dominio sobre los bienes.",
+    url:"https://adenunciar.policia.gov.co/adenunciar/",
+    hint:"Copia el texto y radícalo en la denuncia virtual (A Denunciar) o en la URI o sala de atención de tu municipio. Línea gratuita 01 8000 919748 o 122 desde celular." },
+  procuraduria:{ nombre:"Procuraduría General de la Nación", corto:"Procuraduría", meta:"Que los saquen del cargo", desc:"Sanción disciplinaria: destitución e inhabilidad para funcionarios.",
+    url:"https://www.procuraduria.gov.co/portal/pqrsdf.page",
+    hint:"Copia el texto y pégalo en el formulario de peticiones de la Procuraduría (PQRSDF), o llévalo impreso a la Personería de tu municipio." },
+  entidad:{ nombre:"", corto:"La entidad", meta:"Ver los papeles", desc:"Copia del contrato, pagos, actas e informes de interventoría.",
+    url:"https://www.colombiacompra.gov.co/",
+    hint:"Busca el correo de notificaciones o PQRS en la página de la entidad y envíaselo. Antes revisa en SECOP: muchos contratos ya están publicados." }
+};
+
+/* ============ UTILIDADES ============ */
+const $ = s => document.querySelector(s);
+const TZ = "America/Bogota";
+function hoyBogota(){ // fecha civil de hoy en Colombia
+  const p = new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+  const [y,m,d] = p.split("-").map(Number); return new Date(Date.UTC(y,m-1,d));
+}
+const fmtFecha = d => new Intl.DateTimeFormat("es-CO",{timeZone:"UTC",day:"numeric",month:"long",year:"numeric"}).format(d);
+function pascua(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(Date.UTC(y,mo-1,da));}
+const addD=(d,n)=>new Date(d.getTime()+n*864e5);
+const alLunes=d=>{const w=d.getUTCDay();return w===1?d:addD(d,(8-w)%7);};
+const key=d=>d.toISOString().slice(0,10);
+const festivosCache={};
+function festivos(y){ // festivos de Colombia (Ley 51 de 1983)
+  if(festivosCache[y]) return festivosCache[y];
+  const U=(m,d)=>new Date(Date.UTC(y,m-1,d)), P=pascua(y), s=new Set();
+  [U(1,1),U(5,1),U(7,20),U(8,7),U(12,8),U(12,25),addD(P,-3),addD(P,-2)].forEach(d=>s.add(key(d)));
+  [U(1,6),U(3,19),U(6,29),U(8,15),U(10,12),U(11,1),U(11,11),addD(P,39),addD(P,60),addD(P,68)].forEach(d=>s.add(key(alLunes(d))));
+  return festivosCache[y]=s;
+}
+function sumarHabiles(desde,n){let d=desde,c=0;while(c<n){d=addD(d,1);const w=d.getUTCDay();if(w!==0&&w!==6&&!festivos(d.getUTCFullYear()).has(key(d)))c++;}return d;}
+function habilesEntre(a,b){let c=0,d=a;while(d<b){d=addD(d,1);const w=d.getUTCDay();if(w!==0&&w!==6&&!festivos(d.getUTCFullYear()).has(key(d)))c++;}return c;}
+const store={get(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f;}catch(e){return f;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),2400);}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ============ NAVEGACIÓN ============ */
+function go(tab){
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on",v.id==="v-"+tab));
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.tab===tab));
+  if(tab==="mios") renderClaims();
+  window.scrollTo({top:0,behavior:"instant"});
+}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>go(t.dataset.tab));
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
+
+/* ============ COBRO ============ */
+$("#today").textContent = fmtFecha(hoyBogota());
+$("#r-lines").innerHTML = RECIBO.map(([a,b])=>`<div class="r-line"><span>${a}</span><span class="dots"></span><span>${b}</span></div>`).join("");
+const saved = store.get("ln-datos",{});
+if(saved.nombre) $("#sign-line").textContent = saved.nombre;
+
+function shareText(){
+  return "Los impuestos son nuestros y la plata que se robaron también. Con esta app haces en 3 minutos un derecho de petición para exigir que la devuelvan. Si lo hacemos miles, no lo pueden ignorar: "+location.href;
+}
+$("#share-wa").onclick=()=>window.open("https://wa.me/?text="+encodeURIComponent(shareText()),"_blank","noopener");
+
+/* ============ CASOS ============ */
+function renderCases(f){
+  const list = CASOS.filter(c=>f==="todos"||c.estado===f);
+  $("#case-list").innerHTML = list.map(c=>`
+    <article class="case" data-estado="${c.estado}">
+      <div class="who"><span class="badge">${c.estadoTxt}</span>${esc(c.periodo)}</div>
+      <h3>${esc(c.titulo)}</h3>
+      <div class="who" style="margin:0">${esc(c.entidad)}</div>
+      <div class="amount">${esc(c.monto)}</div>
+      <p style="margin:0">${esc(c.resumen)}</p>
+      <details><summary>Cómo va</summary>
+        <ul>${c.novedades.map(n=>`<li>${esc(n)}</li>`).join("")}</ul>
+        <div class="src">Fuentes: ${c.fuentes.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(t)}</a>`).join(" · ")}</div>
+      </details>
+      <div class="actions"><button class="btn btn-main" data-reclamar="${c.id}">Reclamar por este caso</button></div>
+    </article>`).join("");
+  document.querySelectorAll("[data-reclamar]").forEach(b=>b.onclick=()=>{$("#f-case").value=b.dataset.reclamar;onCase();go("reclamar");});
+}
+document.querySelectorAll(".chip").forEach(ch=>ch.onclick=()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===ch));
+  renderCases(ch.dataset.f);
+});
+renderCases("todos");
+
+/* ============ RECLAMAR ============ */
+$("#f-case").innerHTML = CASOS.map(c=>`<option value="${c.id}">${esc(c.titulo)}</option>`).join("")+`<option value="otro">Una obra o contrato de mi municipio</option>`;
+function onCase(){ $("#custom-case").hidden = $("#f-case").value!=="otro"; }
+$("#f-case").onchange=onCase;
+
+$("#targets").innerHTML = Object.entries(DESTINOS).map(([k,d],i)=>`
+  <label class="target"><input type="radio" name="dest" value="${k}" ${i===0?"checked":""}>
+  <div><b>${d.meta}</b><span>${d.corto==="La entidad"?"A la entidad que contrató":d.nombre}. ${d.desc}</span></div></label>`).join("");
+
+["nombre","cedula","muni","correo","tel"].forEach(k=>{ if(saved[k]) $("#f-"+k).value=saved[k]; });
+
+let ultimo=null;
+$("#make").onclick=()=>{
+  const v=k=>$("#f-"+k).value.trim();
+  const falta=[]; if(!v("nombre"))falta.push("nombre"); if(!v("cedula"))falta.push("cédula"); if(!v("muni"))falta.push("municipio"); if(!v("correo"))falta.push("correo");
+  const caso=$("#f-case").value, destK=document.querySelector("input[name=dest]:checked").value, D=DESTINOS[destK];
+  if(caso==="otro"&&(!v("obra")||!v("entidad"))) falta.push("obra y entidad");
+  if(falta.length){$("#err").textContent="Falta: "+falta.join(", ")+".";return;}
+  $("#err").textContent="";
+  store.set("ln-datos",{nombre:v("nombre"),cedula:v("cedula"),muni:v("muni"),correo:v("correo"),tel:v("tel")});
+  $("#sign-line").textContent=v("nombre");
+
+  const C=CASOS.find(c=>c.id===caso);
+  const hoy=fmtFecha(hoyBogota());
+  const destNombre = destK==="entidad" ? (caso==="otro"?v("entidad"):C.entidad) : D.nombre;
+  let asunto, hechos, peticiones;
+  if(caso==="otro"){
+    asunto=`Derecho de petición sobre ${v("obra")}`;
+    hechos=`1. Soy ciudadano(a) contribuyente residente en ${v("muni")}.\n2. Tengo conocimiento de la obra, contrato o programa "${v("obra")}", a cargo de ${v("entidad")}${v("contrato")?`, contrato N.º ${v("contrato")}`:""}.\n3. ${v("hechos")||"Existen dudas ciudadanas sobre la correcta ejecución de estos recursos públicos."}`;
+    const base = {
+      contraloria:[`Informar si existe auditoría, hallazgo o proceso de responsabilidad fiscal sobre "${v("obra")}" y, de no existir, iniciar las actuaciones de control fiscal que correspondan con base en esta petición.`,"Informar el monto de recursos comprometidos y pagados, y si hay medidas cautelares sobre bienes de posibles responsables."],
+      fiscalia:[`Informar si existe noticia criminal o investigación en curso relacionada con "${v("obra")}" y su estado procesal.`,"Tener esta comunicación como puesta en conocimiento de hechos que podrían constituir delitos contra la administración pública."],
+      procuraduria:[`Informar si existe actuación disciplinaria relacionada con "${v("obra")}" y su estado.`,"Tener esta comunicación como queja para que se evalúe la apertura de la actuación disciplinaria correspondiente."],
+      entidad:["Copia del contrato, sus adiciones y modificaciones.","Relación de pagos realizados a la fecha y porcentaje de avance físico.","Copia de los informes de supervisión e interventoría.","Acciones adelantadas por la entidad para hacer cumplir el contrato o recuperar los recursos (multas, caducidad, pólizas, acción de repetición)."]
+    };
+    peticiones=base[destK];
+  } else {
+    asunto=`Derecho de petición: ${C.titulo}`;
+    hechos=`1. Soy ciudadano(a) contribuyente residente en ${v("muni")}.\n2. Es de conocimiento público el caso "${C.titulo}" (${C.entidad}, ${C.periodo}). ${C.monto}.\n3. Los recursos comprometidos son dineros públicos provenientes de los impuestos de todos los colombianos, y los ciudadanos tenemos derecho a conocer qué se ha hecho para recuperarlos.`;
+    const base = {
+      contraloria:[`Informar ${C.pedir}.`,"Indicar qué medidas cautelares se han decretado sobre bienes de los presuntos responsables y en qué etapa se encuentra el cobro coactivo, si lo hay.","Informar la fecha estimada de decisión de fondo de los procesos abiertos."],
+      fiscalia:[`Informar ${C.pedir}, en lo que no esté sometido a reserva legal.`,"Informar si se han promovido medidas de comiso, embargo o extinción de dominio sobre bienes de los investigados, y si se ha formulado incidente de reparación a favor del Estado.","En caso de reserva, indicar la norma que la sustenta y la etapa procesal general del caso."],
+      procuraduria:["Informar el estado de las actuaciones disciplinarias abiertas contra servidores públicos vinculados a este caso.","Informar las sanciones impuestas a la fecha, si las hay, y las actuaciones pendientes."],
+      entidad:["Copia de los contratos, órdenes y pagos relacionados con este caso.","Informar las acciones adelantadas por la entidad para recuperar los recursos (acción de repetición, reclamación de pólizas, constitución como víctima en el proceso penal).","Informar el valor recuperado a la fecha."]
+    };
+    peticiones=base[destK];
+  }
+  const texto =
+`${v("muni")}, ${hoy}
+
+Señores
+${destNombre}
+E. S. D.
+
+Asunto: ${asunto}
+
+Yo, ${v("nombre")}, identificado(a) con cédula de ciudadanía N.º ${v("cedula")}, en ejercicio del derecho fundamental de petición consagrado en el artículo 23 de la Constitución Política y regulado por la Ley 1755 de 2015, respetuosamente me dirijo a ustedes con base en los siguientes
+
+HECHOS
+${hechos}
+
+PETICIONES
+${peticiones.map((p,i)=>`${i+1}. ${p}`).join("\n")}
+
+FUNDAMENTOS
+Artículos 23, 74 y 270 de la Constitución Política; Ley 1755 de 2015; Ley 1712 de 2014 de transparencia y acceso a la información pública; Ley 850 de 2003 de veedurías ciudadanas.
+
+Solicito que la respuesta se dé dentro de los términos del artículo 14 de la Ley 1437 de 2011, sustituido por la Ley 1755 de 2015. Si esta entidad no es competente para alguna de las peticiones, solicito darle traslado a la autoridad que lo sea e informarme de ello, como lo ordena el artículo 21 de la misma ley.
+
+NOTIFICACIONES
+Correo electrónico: ${v("correo")}${v("tel")?`\nCelular: ${v("tel")}`:""}
+Municipio: ${v("muni")}
+
+Atentamente,
+
+${v("nombre")}
+C.C. ${v("cedula")}`;
+
+  $("#letter").textContent=texto;
+  $("#out").hidden=false;
+  const send=$("#send");
+  if(destK==="contraloria"){
+    send.textContent="Enviar por correo";
+    send.href=`mailto:${D.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(texto)}`;
+    send.removeAttribute("target");
+  } else {
+    send.textContent = destK==="entidad" ? "Buscar en SECOP" : "Abrir canal oficial";
+    send.href=D.url; send.target="_blank";
+  }
+  $("#send-hint").textContent=D.hint;
+  ultimo={id:Date.now(),caso: caso==="otro"?v("obra"):C.titulo, dest: destK==="entidad"?destNombre:D.corto, fecha:key(hoyBogota()), dias: destK==="entidad"?10:15, radicado:"", estado:"enviado"};
+  $("#out").scrollIntoView({behavior:"smooth",block:"start"});
+};
+
+$("#copy").onclick=async()=>{
+  const t=$("#letter").textContent;
+  try{await navigator.clipboard.writeText(t);toast("Reclamo copiado");}
+  catch(e){const r=document.createRange();r.selectNodeContents($("#letter"));const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Texto seleccionado: cópialo");}
+};
+$("#save").onclick=()=>{
+  if(!ultimo) return;
+  const l=store.get("ln-reclamos",[]); l.unshift(ultimo); store.set("ln-reclamos",l);
+  ultimo=null; toast("Guardado en Mis reclamos"); go("mios");
+};
+
+/* ============ MIS RECLAMOS ============ */
+function renderClaims(){
+  const l=store.get("ln-reclamos",[]), hoy=hoyBogota();
+  if(!l.length){ $("#claims").innerHTML=`<div class="empty">Todavía no has guardado reclamos.<br><button class="btn btn-main" style="margin-top:12px" data-go2="reclamar">Hacer mi primer reclamo</button></div>`;
+    $("[data-go2]").onclick=()=>go("reclamar"); return; }
+  $("#claims").innerHTML=l.map(c=>{
+    const f=new Date(c.fecha+"T00:00:00Z"), lim=sumarHabiles(f,c.dias), vencido=hoy>lim, resta=vencido?0:habilesEntre(hoy,lim);
+    const dueTxt = c.estado==="respondieron" ? "Respondieron ✓" : vencido ? `Plazo vencido el ${fmtFecha(lim)}. Ya puedes poner tutela.` : `Tienen hasta el ${fmtFecha(lim)} (${resta} días hábiles).`;
+    return `<div class="claim" data-id="${c.id}">
+      <h3>${esc(c.caso)}</h3>
+      <div class="meta">A: ${esc(c.dest)} · Enviado el ${fmtFecha(f)}</div>
+      <div class="due ${vencido&&c.estado!=="respondieron"?"late":""}">${dueTxt}</div>
+      <div class="row">
+        <input placeholder="N.º de radicado" value="${esc(c.radicado||"")}" data-k="radicado" aria-label="Número de radicado">
+        <select data-k="estado" aria-label="Estado"><option value="enviado" ${c.estado==="enviado"?"selected":""}>Esperando respuesta</option><option value="respondieron" ${c.estado==="respondieron"?"selected":""}>Ya respondieron</option></select>
+        <button class="small-btn" data-del>Borrar</button>
+      </div></div>`;}).join("");
+  document.querySelectorAll(".claim").forEach(el=>{
+    const id=+el.dataset.id;
+    el.querySelectorAll("[data-k]").forEach(inp=>inp.onchange=()=>{const l=store.get("ln-reclamos",[]);const c=l.find(x=>x.id===id);if(c){c[inp.dataset.k]=inp.value;store.set("ln-reclamos",l);renderClaims();}});
+    el.querySelector("[data-del]").onclick=()=>{store.set("ln-reclamos",store.get("ln-reclamos",[]).filter(x=>x.id!==id));renderClaims();};
+  });
+}
+
+/* ============ PWA ============ */
+if("serviceWorker" in navigator && location.protocol==="https:"){ navigator.serviceWorker.register("sw.js").catch(()=>{}); }
+</script>
+</body>
+</html>
