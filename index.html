@@ -155,6 +155,24 @@ textarea{min-height:92px;resize:vertical}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;opacity:0;transition:opacity .2s;pointer-events:none;z-index:20;max-width:90vw;text-align:center}
 .toast.show{opacity:1}
 footer{margin-top:40px;font-size:13.5px;color:var(--muted)}
+
+/* ---------- prueba: sí funciona ---------- */
+.proof{background:var(--paper);border:2px solid var(--ok);border-radius:14px;padding:18px;position:relative}
+.proof .ok-stamp{display:inline-block;border:3px solid var(--ok);color:var(--ok);font-weight:800;font-stretch:80%;font-size:15px;line-height:1.05;padding:5px 9px;border-radius:6px;transform:rotate(-4deg);margin-bottom:10px}
+.proof .rad{font-family:var(--mono);font-size:13.5px;color:var(--muted);margin-bottom:10px}
+.tl{list-style:none;padding:0;margin:14px 0 0;border-left:3px solid var(--line)}
+.tl>li{position:relative;padding:0 0 14px 18px}
+.tl>li::before{content:"";position:absolute;left:-8px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--ok)}
+.tl>li.next::before{background:var(--gold)}
+.pending{padding-left:20px;list-style:disc}
+.tl b{display:block}
+.tl span{font-size:15px;color:var(--muted)}
+.figure{font-family:var(--mono);font-weight:700;font-size:20px;color:var(--ok)}
+.pending{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px}
+.pending li{margin-bottom:6px}
+.next-steps{display:grid;gap:10px;margin-top:12px}
+.next-steps .btn{justify-content:flex-start;text-align:left}
+.case .proof-mini{border-left:3px solid var(--ok);padding:6px 10px;margin-top:8px;font-size:15px;background:var(--bg);border-radius:0 8px 8px 0}
 </style>
 </head>
 <body>
@@ -194,6 +212,36 @@ footer{margin-top:40px;font-size:13.5px;color:var(--muted)}
       </div>
     </section>
 
+    <section id="prueba">
+      <h2>Sí funciona</h2>
+      <p class="lead">El creador de esta app usó el mismo formato que tienes aquí para preguntarle a la Contraloría por los carrotanques de la UNGRD. Le respondieron por escrito, por correo certificado, con los números de los procesos.</p>
+      <div class="proof">
+        <div class="ok-stamp">RESPONDIDO</div>
+        <div class="rad">Petición SIGEDOC 2026ER020347 · Respuesta oficio 2026EE0218125 · 13 oct. 2026<br>Unidad de Investigaciones Especiales contra la Corrupción · Contraloría General</div>
+        <ol class="tl">
+          <li><b>Se envió el derecho de petición</b><span>Hecho con la pestaña Reclamar, caso Carrotanques, meta "Que devuelvan la plata".</span></li>
+          <li><b>La Contraloría lo radicó y respondió</b><span>Llegó como notificación electrónica certificada de 4-72, el correo oficial del Estado.</span></li>
+          <li><b>Proceso PRF-80011-2024-46119: fallo con responsabilidad fiscal</b><span>Daño al patrimonio establecido:</span><div class="figure">$14.346.577.619</div><span>(valor indexado). Hay embargos de bienes y el caso pasó a la Unidad de Cobro Coactivo, que es la que recupera la plata.</span></li>
+          <li><b>Proceso PRF-85112-2024-45980: fallo con responsabilidad fiscal en revisión</b><span>Está en segunda instancia (grado de consulta) en la Sala Fiscal y Sancionatoria, que puede confirmarlo, modificarlo o revocarlo. También tiene embargos y fue enviado a cobro coactivo.</span></li>
+          <li class="next"><b>Lo que falta saber</b>
+            <ul class="pending">
+              <li>Cuánta plata se ha recuperado de verdad. La Unidad que respondió dice que eso lo maneja Cobro Coactivo.</li>
+              <li>El monto del segundo fallo.</li>
+              <li>Cómo van los procesos penales: eso es de la Fiscalía, no de la Contraloría.</li>
+            </ul>
+          </li>
+        </ol>
+        <div class="btn-row"><a class="btn btn-alt" href="respuesta-contraloria-2026EE0218125.pdf" target="_blank" rel="noopener">Ver la respuesta original (PDF)</a></div>
+      </div>
+
+      <h3 style="margin-top:22px">Ahora sigue el próximo paso. Hazlo tú también</h3>
+      <p class="lead">Las peticiones ya están escritas con los números de los procesos. Solo pones tus datos y la envías. Entre más personas pregunten, más difícil es que el caso se quede quieto.</p>
+      <div class="next-steps">
+        <button class="btn btn-main" data-pre="ungrd-carrotanques|cobro">1 · A Cobro Coactivo: ¿cuánto han recuperado?</button>
+        <button class="btn btn-main" data-pre="ungrd-carrotanques|fiscalia">2 · A la Fiscalía: ¿cómo van los procesos penales?</button>
+      </div>
+    </section>
+
     <section>
       <h2>Pásala</h2>
       <p class="lead">Un reclamo solo es un papel. Diez mil reclamos por el mismo caso son una presión que ninguna entidad puede ignorar. Mándala a tu familia, a tu barrio y a tu grupo de trabajo.</p>
@@ -221,7 +269,7 @@ footer{margin-top:40px;font-size:13.5px;color:var(--muted)}
       <button class="chip" aria-pressed="false" data-f="fiscal">Hallazgo fiscal</button>
     </div>
     <div id="case-list"></div>
-    <p class="note">Solo quienes tienen sentencia están condenados. Las demás personas mencionadas son investigadas o acusadas y se presumen inocentes hasta que un juez decida. La información sale de reportes de prensa y de la Contraloría hasta septiembre de 2026; cada caso trae su fuente.</p>
+    <p class="note">Solo quienes tienen sentencia están condenados. Las demás personas mencionadas son investigadas o acusadas y se presumen inocentes hasta que un juez decida. La información sale de reportes de prensa y de la Contraloría hasta octubre de 2026; cada caso trae su fuente.</p>
   </div>
 
   <!-- ================= RECLAMAR ================= -->
@@ -310,14 +358,18 @@ footer{margin-top:40px;font-size:13.5px;color:var(--muted)}
 const CASOS = [
   { id:"ungrd-carrotanques", titulo:"Carrotanques para La Guajira (UNGRD)", entidad:"Unidad Nacional para la Gestión del Riesgo de Desastres", periodo:"2023 · Gobierno Petro",
     estado:"condena", estadoTxt:"Con condenas",
-    monto:"La Contraloría imputó responsabilidad fiscal por más de $22.000 millones",
+    monto:"Fallo con responsabilidad fiscal por $14.346.577.619 (indexado), ya en cobro coactivo",
     resumen:"En 2023 se compraron 80 carrotanques por emergencia para llevar agua a La Guajira. Según Fiscalía y Contraloría, se pagaron con sobreprecio, con documentos falsos y muchos no servían para lo que se compraron.",
+    prueba:"Confirmado por la Contraloría a un ciudadano que usó esta app (oficio 2026EE0218125, 13 oct. 2026).",
+    procesos:["PRF-80011-2024-46119","PRF-85112-2024-45980"],
+    antecedente:"Mediante oficio 2026EE0218125 del 13 de octubre de 2026, la Unidad de Investigaciones Especiales contra la Corrupción de la Contraloría General informó, en respuesta a un derecho de petición ciudadano, que el proceso PRF-80011-2024-46119 terminó con fallo con responsabilidad fiscal por un detrimento de $14.346.577.619 indexados y fue remitido a la Unidad de Cobro Coactivo, y que el proceso PRF-85112-2024-45980 terminó con fallo con responsabilidad fiscal, se encuentra en grado de consulta ante la Sala Fiscal y Sancionatoria y también fue remitido a cobro coactivo. En ambos se decretaron medidas cautelares de embargo. La misma respuesta indicó que la Contraloría no se pronuncia sobre los procesos penales.",
     novedades:[
+      "Octubre 2026: la Contraloría confirmó por escrito que el proceso PRF-80011-2024-46119 terminó con fallo con responsabilidad fiscal por $14.346 millones (indexado) y está en cobro coactivo. Un segundo proceso, PRF-85112-2024-45980, tiene fallo y está en revisión de segunda instancia. Ambos tienen embargos.",
       "Marzo 2026: condenado a 16 años y 7 meses el exgerente de ventas de la corporación Yapurutú, que vendió 40 de los carrotanques.",
       "Febrero 2026: la Supersociedades inhabilitó 10 años a Impoamericana Roger S.A.S., la otra proveedora, y le impuso una multa de casi $1.299 millones.",
       "Agosto 2026: otros dos procesados firmaron preacuerdo con la Fiscalía. Una jueza decide el 4 de noviembre de 2026 si lo acepta."
     ],
-    fuentes:[["Semana, mar. 2026","https://www.semana.com/nacion/articulo/corrupcion-en-la-ungrd-condenado-a-16-anos-y-medio-de-prision-exgerente-de-empresa-que-vendio-los-50-carrotanques/202640/"],["Infobae, feb. 2026","https://www.infobae.com/colombia/2026/02/25/supersociedades-inhabilito-por-10-anos-a-empresa-proveedora-de-carrotanques-por-escandalo-de-corrupcion-en-la-ungrd-le-impuso-millonaria-multa/"]],
+    fuentes:[["Respuesta oficial de la Contraloría, oct. 2026","respuesta-contraloria-2026EE0218125.pdf"],["Semana, mar. 2026","https://www.semana.com/nacion/articulo/corrupcion-en-la-ungrd-condenado-a-16-anos-y-medio-de-prision-exgerente-de-empresa-que-vendio-los-50-carrotanques/202640/"],["Infobae, feb. 2026","https://www.infobae.com/colombia/2026/02/25/supersociedades-inhabilito-por-10-anos-a-empresa-proveedora-de-carrotanques-por-escandalo-de-corrupcion-en-la-ungrd-le-impuso-millonaria-multa/"]],
     pedir:"el estado de los procesos de responsabilidad fiscal y penales por la compra de carrotanques de la UNGRD para La Guajira (2023), el monto del detrimento establecido, los bienes embargados a los responsables y la suma efectivamente devuelta al Estado a la fecha" },
 
   { id:"ungrd-congreso", titulo:"Plata de la UNGRD para comprar votos en el Congreso", entidad:"UNGRD, Ministerio de Hacienda y Congreso", periodo:"2023 · Gobierno Petro",
@@ -383,7 +435,7 @@ const CASOS = [
 ];
 
 const RECIBO = [
-  ["Carrotanques UNGRD","$22.000 M"],
+  ["Carrotanques UNGRD (fallo fiscal)","$14.347 M"],
   ["PAE, todo el país","$53.117 M"],
   ["Planes de agua, Antioquia","$8.700 M"],
   ["Obras con regalías","$2,1 billones"],
@@ -395,6 +447,9 @@ const DESTINOS = {
   contraloria:{ nombre:"Contraloría General de la República", corto:"Contraloría", meta:"Que devuelvan la plata", desc:"Procesos de responsabilidad fiscal: el responsable paga con su patrimonio.",
     correo:"cgr@contraloria.gov.co", url:"https://denuncie.contraloria.gov.co/sipar/",
     hint:"Se abre tu correo con el reclamo listo para cgr@contraloria.gov.co. También puedes radicarlo en SIPAR o llamar gratis al 01 8000 910060. Para obras municipales o departamentales, envía copia a la contraloría de tu departamento." },
+  cobro:{ nombre:"Contraloría General de la República — Unidad de Cobro Coactivo", corto:"Cobro Coactivo (Contraloría)", meta:"Que cobren lo que ya se falló", desc:"Para casos con fallo fiscal: cuánto se ha recuperado y qué falta por cobrar.",
+    correo:"cgr@contraloria.gov.co", url:"https://denuncie.contraloria.gov.co/sipar/",
+    hint:"Se abre tu correo con el reclamo listo para cgr@contraloria.gov.co, dirigido a la Unidad de Cobro Coactivo. Cita siempre los números de proceso: así lo reparten a la oficina correcta más rápido." },
   fiscalia:{ nombre:"Fiscalía General de la Nación", corto:"Fiscalía", meta:"Que respondan ante la justicia", desc:"Investigación penal, cárcel y extinción de dominio sobre los bienes.",
     url:"https://adenunciar.policia.gov.co/adenunciar/",
     hint:"Copia el texto y radícalo en la denuncia virtual (A Denunciar) o en la URI o sala de atención de tu municipio. Línea gratuita 01 8000 919748 o 122 desde celular." },
@@ -463,6 +518,7 @@ function renderCases(f){
       <div class="who" style="margin:0">${esc(c.entidad)}</div>
       <div class="amount">${esc(c.monto)}</div>
       <p style="margin:0">${esc(c.resumen)}</p>
+      ${c.prueba?`<div class="proof-mini">✓ ${esc(c.prueba)} <a href="#" data-goprueba>Ver cómo</a></div>`:""}
       <details><summary>Cómo va</summary>
         <ul>${c.novedades.map(n=>`<li>${esc(n)}</li>`).join("")}</ul>
         <div class="src">Fuentes: ${c.fuentes.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(t)}</a>`).join(" · ")}</div>
@@ -470,6 +526,7 @@ function renderCases(f){
       <div class="actions"><button class="btn btn-main" data-reclamar="${c.id}">Reclamar por este caso</button></div>
     </article>`).join("");
   document.querySelectorAll("[data-reclamar]").forEach(b=>b.onclick=()=>{$("#f-case").value=b.dataset.reclamar;onCase();go("reclamar");});
+  document.querySelectorAll("[data-goprueba]").forEach(a=>a.onclick=e=>{e.preventDefault();go("cobro");$("#prueba").scrollIntoView({behavior:"smooth",block:"start"});});
 }
 document.querySelectorAll(".chip").forEach(ch=>ch.onclick=()=>{
   document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===ch));
@@ -487,6 +544,16 @@ $("#targets").innerHTML = Object.entries(DESTINOS).map(([k,d],i)=>`
   <div><b>${d.meta}</b><span>${d.corto==="La entidad"?"A la entidad que contrató":d.nombre}. ${d.desc}</span></div></label>`).join("");
 
 ["nombre","cedula","muni","correo","tel"].forEach(k=>{ if(saved[k]) $("#f-"+k).value=saved[k]; });
+
+// Botones "próximo paso": dejan el caso y el destino ya escogidos
+document.querySelectorAll("[data-pre]").forEach(b=>b.onclick=()=>{
+  const [caso,dest]=b.dataset.pre.split("|");
+  $("#f-case").value=caso; onCase();
+  const r=document.querySelector(`input[name=dest][value="${dest}"]`); if(r) r.checked=true;
+  $("#out").hidden=true;
+  go("reclamar");
+  toast("Listo: solo faltan tus datos");
+});
 
 let ultimo=null;
 $("#make").onclick=()=>{
@@ -508,6 +575,7 @@ $("#make").onclick=()=>{
     hechos=`1. Soy ciudadano(a) contribuyente residente en ${v("muni")}.\n2. Tengo conocimiento de la obra, contrato o programa "${v("obra")}", a cargo de ${v("entidad")}${v("contrato")?`, contrato N.º ${v("contrato")}`:""}.\n3. ${v("hechos")||"Existen dudas ciudadanas sobre la correcta ejecución de estos recursos públicos."}`;
     const base = {
       contraloria:[`Informar si existe auditoría, hallazgo o proceso de responsabilidad fiscal sobre "${v("obra")}" y, de no existir, iniciar las actuaciones de control fiscal que correspondan con base en esta petición.`,"Informar el monto de recursos comprometidos y pagados, y si hay medidas cautelares sobre bienes de posibles responsables."],
+      cobro:[`Informar si existe fallo con responsabilidad fiscal en firme relacionado con "${v("obra")}" y, en caso afirmativo, el número del proceso, el valor del fallo y el valor recaudado a la fecha.`,"Informar en qué etapa se encuentra el proceso de cobro coactivo y si se han suscrito acuerdos de pago o rematado bienes embargados.",`Si no existe fallo, dar traslado de esta petición a la dependencia competente de control fiscal, conforme al artículo 21 de la Ley 1755 de 2015.`],
       fiscalia:[`Informar si existe noticia criminal o investigación en curso relacionada con "${v("obra")}" y su estado procesal.`,"Tener esta comunicación como puesta en conocimiento de hechos que podrían constituir delitos contra la administración pública."],
       procuraduria:[`Informar si existe actuación disciplinaria relacionada con "${v("obra")}" y su estado.`,"Tener esta comunicación como queja para que se evalúe la apertura de la actuación disciplinaria correspondiente."],
       entidad:["Copia del contrato, sus adiciones y modificaciones.","Relación de pagos realizados a la fecha y porcentaje de avance físico.","Copia de los informes de supervisión e interventoría.","Acciones adelantadas por la entidad para hacer cumplir el contrato o recuperar los recursos (multas, caducidad, pólizas, acción de repetición)."]
@@ -515,14 +583,32 @@ $("#make").onclick=()=>{
     peticiones=base[destK];
   } else {
     asunto=`Derecho de petición: ${C.titulo}`;
-    hechos=`1. Soy ciudadano(a) contribuyente residente en ${v("muni")}.\n2. Es de conocimiento público el caso "${C.titulo}" (${C.entidad}, ${C.periodo}). ${C.monto}.\n3. Los recursos comprometidos son dineros públicos provenientes de los impuestos de todos los colombianos, y los ciudadanos tenemos derecho a conocer qué se ha hecho para recuperarlos.`;
+    hechos=`1. Soy ciudadano(a) contribuyente residente en ${v("muni")}.\n2. Es de conocimiento público el caso "${C.titulo}" (${C.entidad}, ${C.periodo}). ${C.monto}.\n3. Los recursos comprometidos son dineros públicos provenientes de los impuestos de todos los colombianos, y los ciudadanos tenemos derecho a conocer qué se ha hecho para recuperarlos.`+(C.antecedente?`\n4. ${C.antecedente}`:"");
+    const P = C.procesos||[];
+    const procTxt = P.length ? `los procesos ${P.join(" y ")}` : "los procesos de responsabilidad fiscal con fallo derivados de este caso";
     const base = {
       contraloria:[`Informar ${C.pedir}.`,"Indicar qué medidas cautelares se han decretado sobre bienes de los presuntos responsables y en qué etapa se encuentra el cobro coactivo, si lo hay.","Informar la fecha estimada de decisión de fondo de los procesos abiertos."],
+      cobro:[
+        `Informar, para cada uno de ${procTxt}, el número del proceso de cobro coactivo asignado y la etapa en que se encuentra.`,
+        `Informar el valor total por el que se adelanta el cobro en cada proceso${P[1]?`, incluido el valor del fallo del proceso ${P[1]}`:""}.`,
+        "Informar el valor efectivamente recaudado a la fecha y el saldo pendiente por recuperar. Esta información es agregada, no contiene datos personales de los vinculados y es de interés público según la Ley 1712 de 2014.",
+        "Informar si se han suscrito acuerdos de pago, si se han rematado bienes embargados o si se han hecho efectivas pólizas de seguro, indicando los valores sin revelar datos personales protegidos.",
+        P[1]?`Informar si ya se resolvió el grado de consulta del proceso ${P[1]} y, si no, la fecha estimada de la decisión.`:"Informar la fecha estimada de terminación del cobro."
+      ],
       fiscalia:[`Informar ${C.pedir}, en lo que no esté sometido a reserva legal.`,"Informar si se han promovido medidas de comiso, embargo o extinción de dominio sobre bienes de los investigados, y si se ha formulado incidente de reparación a favor del Estado.","En caso de reserva, indicar la norma que la sustenta y la etapa procesal general del caso."],
       procuraduria:["Informar el estado de las actuaciones disciplinarias abiertas contra servidores públicos vinculados a este caso.","Informar las sanciones impuestas a la fecha, si las hay, y las actuaciones pendientes."],
       entidad:["Copia de los contratos, órdenes y pagos relacionados con este caso.","Informar las acciones adelantadas por la entidad para recuperar los recursos (acción de repetición, reclamación de pólizas, constitución como víctima en el proceso penal).","Informar el valor recuperado a la fecha."]
     };
     peticiones=base[destK];
+    if(destK==="fiscalia" && C.antecedente){
+      peticiones=[
+        `Informar los números de las noticias criminales (SPOA) abiertas por los hechos del caso "${C.titulo}", y la etapa de cada una (indagación, investigación, juicio o sentencia), en lo que no esté sometido a reserva legal.`,
+        "Informar cuántas personas han sido condenadas, cuántas han aceptado cargos o suscrito preacuerdos y cuántas siguen en juicio.",
+        "Informar si se han promovido medidas de comiso, embargo o extinción de dominio sobre bienes de los procesados, y si la entidad afectada o la Nación se constituyó como víctima y formuló incidente de reparación integral.",
+        "Informar si existe coordinación con la Contraloría General para que lo recuperado en el proceso penal se descuente o sume al cobro coactivo del fallo fiscal, de modo que el Estado recupere la totalidad del daño.",
+        "En caso de reserva, indicar la norma que la sustenta y la etapa procesal general de cada caso."
+      ];
+    }
   }
   const texto =
 `${v("muni")}, ${hoy}
@@ -558,9 +644,10 @@ C.C. ${v("cedula")}`;
   $("#letter").textContent=texto;
   $("#out").hidden=false;
   const send=$("#send");
-  if(destK==="contraloria"){
+  if(D.correo){
     send.textContent="Enviar por correo";
-    send.href=`mailto:${D.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(texto)}`;
+    const subj = destK==="cobro" ? `Atención Unidad de Cobro Coactivo - ${asunto}` : asunto;
+    send.href=`mailto:${D.correo}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(texto)}`;
     send.removeAttribute("target");
   } else {
     send.textContent = destK==="entidad" ? "Buscar en SECOP" : "Abrir canal oficial";
